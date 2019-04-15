@@ -19,3 +19,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/google/callback', 'SocialAuthController@callback');
 Route::get('/google/redirect', 'SocialAuthController@redirect');
+Route::post('/login', 'Api\PassportController@login');
+Route::post('/register', 'Api\PassportController@register');
