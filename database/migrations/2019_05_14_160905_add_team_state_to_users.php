@@ -14,7 +14,7 @@ class AddTeamStateToUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('team_state')->nullable()();
+            $table->string('team_state')->nullable();
         });
     }
 
