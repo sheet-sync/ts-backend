@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Models\Team;
 
 class PassportController extends Controller
 {
@@ -18,9 +19,15 @@ class PassportController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => bcrypt($request->password)
+            'password' => bcrypt($request->password),
+            'team_state' => 'personal',
         ]);
         $token = $user->createToken('Flash')->accessToken;
+
+        $team = new Team();
+        $team->owner_id = $user->id;
+        $team->name = $request->name;
+        $team->save();
 
         return response()->json(['token' => $token, 'user' => $user], 200);
     }
