@@ -14,7 +14,8 @@
         "laravel/passport": "^7.2",
         "laravel/socialite": "^4.1",
         "laravel/tinker": "^1.0",
-        "lorisleiva/laravel-deployer": "^0.2.10"
+        "lorisleiva/laravel-deployer": "^0.2.10",
+        "oliuz/teamwork": "^5.3"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
