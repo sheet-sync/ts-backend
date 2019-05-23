@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
+use App\Models\Team;
 
 class SocialAuthController extends Controller
 {
@@ -37,6 +38,8 @@ class SocialAuthController extends Controller
                 $user->password = bcrypt(Str::random(12));
                 $user->save();
 
+                $token = $user->createToken('Flash')->accessToken;
+
                 $social = new LinkedSocialAccount;
                 $social->user_id = $user->id;
                 $social->provider_id = $googleUser->getId();
@@ -44,7 +47,12 @@ class SocialAuthController extends Controller
                 $social->access_token = $googleUser->token;
                 $social->save();
 
-                return response()->json($user);
+                $team = new Team();
+                $team->owner_id = $user->id;
+                $team->name = $googleUser->name;
+                $team->save();
+
+                return response()->json(['token' => $token, 'user' => $user, 'google' => $googleUser], 200);
             }
         }
         catch (Exception $e) {
