@@ -17,7 +17,8 @@ class SocialAuthController extends Controller
             'access_type' => 'offline',
             'include_granted_scopes' => 'true'
         ];
-        return Socialite::driver('google')->with($params)->stateless()->redirect();
+        return Socialite::driver('google')->redirectUrl(config('services.google.redirect'))
+                ->with($params)->stateless()->redirect();
     }
 
     public function callback() {
