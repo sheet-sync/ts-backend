@@ -17,6 +17,7 @@
         "laravel/telescope": "^2.0",
         "laravel/tinker": "^1.0",
         "lorisleiva/laravel-deployer": "^0.2.10",
+        "moontoast/math": "^1.1",
         "oliuz/teamwork": "^5.3"
     },
     "require-dev": {

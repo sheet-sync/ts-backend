@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "4bfba1a4b0e701d4b3b18ed276baaa5e",
+    "content-hash": "d9904cb5cee1f84e07a292e8a78f3a09",
     "packages": [
         {
             "name": "ausi/slug-generator",
@@ -1751,7 +1751,7 @@
             ],
             "authors": [
                 {
-                    "name": "Loris LEIVA",
+                    "name": "Loris Leiva",
                     "email": "loris.leiva@gmail.com"
                 }
             ],
