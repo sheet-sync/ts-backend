@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\Team;
+use Ausi\SlugGenerator\SlugGenerator;
 
 class SocialAuthController extends Controller
 {
@@ -32,6 +33,10 @@ class SocialAuthController extends Controller
                 Auth::loginUsingId($existUser->id);
             }
             else {
+
+                $generator = new SlugGenerator;
+                $tail = ' ' . Str::random(7);
+
                 $user = new User;
                 $user->name = $googleUser->name;
                 $user->email = $googleUser->email;
@@ -50,6 +55,7 @@ class SocialAuthController extends Controller
                 $team = new Team();
                 $team->owner_id = $user->id;
                 $team->name = $googleUser->name;
+                $team->slug = $generator->generate($googleUser->name . $tail);
                 $team->save();
 
                 return response()->json(['token' => $token, 'user' => $user, 'google' => $googleUser], 200);

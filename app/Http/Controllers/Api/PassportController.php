@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Models\Team;
+use Ausi\SlugGenerator\SlugGenerator;
 
 class PassportController extends Controller
 {
@@ -24,9 +25,13 @@ class PassportController extends Controller
         ]);
         $token = $user->createToken('Flash')->accessToken;
 
+        $generator = new SlugGenerator;
+        $tail = ' ' . Str::random(7);
+
         $team = new Team();
         $team->owner_id = $user->id;
         $team->name = $request->name;
+        $team->slug = $generator->generate($request->name . $tail);
         $team->save();
 
         return response()->json(['token' => $token, 'user' => $user], 200);
