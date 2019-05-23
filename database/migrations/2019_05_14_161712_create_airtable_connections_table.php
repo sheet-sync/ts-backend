@@ -33,9 +33,9 @@ class CreateAirtableConnectionsTable extends Migration
      */
     public function down()
     {
-        Schema::table('airtable_connections', function (Blueprint $table) {
-            $table->dropForeign('user_id');
-        });
+        // Schema::table('airtable_connections', function (Blueprint $table) {
+        //     $table->dropForeign('user_id');
+        // });
         Schema::dropIfExists('airtable_connections');
     }
 }
